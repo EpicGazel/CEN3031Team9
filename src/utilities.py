@@ -30,7 +30,8 @@ def read_organizations_from_csv(file_path):
 
 # Example Usage:
 if __name__ == "__main__":
-    file_path = "../data/example_organizations.csv"
+    #file_path = "../data/example_organizations.csv"
+    file_path = "../data/organizations.csv"
 
     # Reading organizations from the CSV file
     organizations_list = read_organizations_from_csv(file_path)
