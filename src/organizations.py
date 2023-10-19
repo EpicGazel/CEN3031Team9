@@ -13,17 +13,9 @@ class Organization:
         print(f"Tags: {', '.join(self.tags)}")
         print(f"Website Link: {self.website_link}")
 
+    def __str__(self):
+        return f"Name: {self.name}\n - Tags: {', '.join(self.tags)}\n - Website Link: {self.website_link}"
 
 # Example Usage:
 if __name__ == "__main__":
-    # Creating an Organization instance
-    organization1 = Organization(
-        "Example Organization",
-        "A brief overview of the organization.",
-        "A more detailed description of the organization's mission and activities.",
-        ["tag1", "tag2", "tag3"],
-        "https://www.example.org"
-    )
-
-    # Displaying organization information
-    organization1.display_organization_info()
+    pass

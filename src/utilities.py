@@ -28,14 +28,11 @@ def read_organizations_from_csv(file_path):
     return organizations
 
 
-# Example Usage:
+def filter_organizations(orgs, tags):
+    if 'all' in tags:
+        return orgs
+    return [org for org in orgs if all(tag.lower() in map(str.lower, org.tags) for tag in tags)]
+
+
 if __name__ == "__main__":
-    #file_path = "../data/example_organizations.csv"
-    file_path = "../data/organizations.csv"
-
-    # Reading organizations from the CSV file
-    organizations_list = read_organizations_from_csv(file_path)
-
-    # Displaying information for each organization
-    for org in organizations_list:
-        org.display_organization_info()
+    pass
