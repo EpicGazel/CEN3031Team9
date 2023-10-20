@@ -3,6 +3,16 @@ from organizations import Organization
 from user import User, CreditCard
 
 
+def full_print(list):
+    for item in list:
+        item.display_info()
+
+
+def short_print(list):
+    for item in list:
+        print(item)
+
+
 def read_users_from_csv(file_path):
     users = []
 
