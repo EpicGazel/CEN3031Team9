@@ -1,5 +1,35 @@
 import csv
 from organizations import Organization
+from user import User, CreditCard
+
+
+def read_users_from_csv(file_path):
+    users = []
+
+    try:
+        with open(file_path, newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+
+            for row in reader:
+                # Create a User instance for each row in the CSV
+                user = User(
+                    username=row['Username'],
+                    email=row['Email'],
+                    password=row['Password'],
+                    payment_info=CreditCard(
+                        card_number=row['CCNumber'],
+                        expiration_date=row['CCExpiration'],
+                        cvv=row['CVV']
+                    )
+                )
+                users.append(user)
+
+    except FileNotFoundError:
+        print(f"Error: The file {file_path} was not found.")
+    except Exception as e:
+        print(f"Error: {e}")
+
+    return users
 
 
 def read_organizations_from_csv(file_path):

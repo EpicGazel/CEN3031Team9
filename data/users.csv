@@ -1,0 +1,16 @@
+Username,Email,Password,CCNumber,CCExpiration,CVV
+john_doe,johndoe@example.com,Secret123,4111111111111111,10/25,123
+jane_smith,janesmith@example.com,Password456,5555666677778888,05/24,789
+mark_johnson,markjohnson@example.com,P@ssw0rd,4111222233334444,12/23,456
+susan_wilson,susanwilson@example.com,SecurePass,378282246310005,09/26,234
+michael_adams,michaeladams@example.com,Pa$$w0rd,6011000990139424,06/27,789
+emily_jones,emilyjones@example.com,Password123,5105105105105100,11/25,345
+test_user,testuser@example.com,Test123,4485760126333666,08/24,567
+admin_user,adminuser@example.com,AdminPass,371449635398431,07/23,123
+alice_brown,alicebrown@example.com,RandomP@ss,6011112223334444,04/26,789
+david_wilson,davidwilson@example.com,Secure123,5555777788889999,09/25,456
+lisa_smith,lisasmith@example.com,SecretPass,4111222233334444,02/24,234
+robert_jones,robertjones@example.com,Passw0rd123,378734493671000,03/26,345
+sarah_davis,sarahdavis@example.com,12345678,4917610258050647,11/23,567
+chris_martin,chrismartin@example.com,Pa$$w0rd321,4556203792408472,06/27,123
+mary_taylor,marytaylor@example.com,TaylorPass,4556203792408472,05/25,789

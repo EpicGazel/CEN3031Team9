@@ -1,15 +1,16 @@
 from organizations import Organization
+from user import User, CreditCard
 import utilities as u
 
 
-def full_print(orgs):
-    for org in orgs:
-        org.display_organization_info()
+def full_print(list):
+    for item in list:
+        item.display_info()
 
 
-def short_print(orgs):
-    for org in orgs:
-        print(org)
+def short_print(list):
+    for item in list:
+        print(item)
 
 
 def import_orgs():
@@ -20,6 +21,14 @@ def import_orgs():
     organizations_list = u.read_organizations_from_csv(file_path)
     return organizations_list
 
+
+def import_users():
+    # file_path = "../data/example_users.csv"
+    file_path = "../data/users.csv"
+
+    # Reading users from the CSV file
+    users_list = u.read_users_from_csv(file_path)
+    return users_list
 
 def test_create_and_display_org():
     # Creating an Organization instance
@@ -59,6 +68,23 @@ def test_filter_orgs():
     filtered_organizations = u.filter_organizations(orgs, ["children", "church"])
     for org in filtered_organizations:
         print(org)
+
+
+def test_create_and_display_user():
+    # Creating a CreditCard instance
+    credit_card = CreditCard("1234567891011121", "12/24", "123")
+
+    # Creating a User instance with the CreditCard instance as payment information
+    user1 = User("john_doe", "john.doe@example.com", "secure_password", credit_card)
+
+    # Displaying user information, including payment information
+    user1.display_info()
+
+
+def test_import_and_display_users():
+    users = import_users()
+    # Displaying information for each organization
+    full_print(users)
 
 
 if __name__ == "__main__":

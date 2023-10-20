@@ -6,7 +6,7 @@ class Organization:
         self.tags = tags
         self.website_link = website_link
 
-    def display_organization_info(self):
+    def display_info(self):
         print(f"Name: {self.name}")
         print(f"Short Description: {self.short_description}")
         print(f"Long Description: {self.long_description}")
@@ -16,6 +16,6 @@ class Organization:
     def __str__(self):
         return f"Name: {self.name}\n - Tags: {', '.join(self.tags)}\n - Website Link: {self.website_link}"
 
-# Example Usage:
+
 if __name__ == "__main__":
     pass

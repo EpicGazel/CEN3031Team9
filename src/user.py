@@ -4,10 +4,10 @@ class CreditCard:
         self.expiration_date = expiration_date
         self.cvv = cvv
 
-    def display_card_info(self):
-        print(f"Card Number: {self.card_number}")
-        print(f"Expiration Date: {self.expiration_date}")
-        print(f"CVV: {self.cvv}")
+    def display_info(self):
+        print(f"\tCard Number: {self.card_number}")
+        print(f"\tExpiration Date: {self.expiration_date}")
+        print(f"\tCVV: {self.cvv}")
 
 
 class User:
@@ -17,12 +17,15 @@ class User:
         self.password = password
         self.payment_info = payment_info
 
-    def display_user_info(self):
+    def display_info(self):
         print(f"Username: {self.username}")
         print(f"Email: {self.email}")
         print(f"Password: {self.password}")
         print("Payment Information:")
-        self.payment_info.display_card_info()
+        self.payment_info.display_info()
+
+    def __str__(self):
+        return f"Username: {self.username}\n - Email: {self.email}\n"
 
 
 # Example Usage:
