@@ -13,6 +13,14 @@ def short_print(list):
         print(item)
 
 
+def validate_user(username, password, users):
+    for user in users:
+        if username == user.username and password == user.password:
+            return user
+
+    return None
+
+
 def read_users_from_csv(file_path):
     users = []
 
@@ -72,6 +80,11 @@ def filter_organizations(orgs, tags):
     if 'all' in tags:
         return orgs
     return [org for org in orgs if all(tag.lower() in map(str.lower, org.tags) for tag in tags)]
+
+
+def list_tags(orgs):
+    unique_tags = set(tag for org in orgs for tag in org.tags)
+    return list(unique_tags)
 
 
 if __name__ == "__main__":
