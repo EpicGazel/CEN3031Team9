@@ -83,6 +83,7 @@ def main():
         print("(3) Select Organization to read more or donate (must be logged in to donate)")
         print("(4) Filter Organizations by tag")
         print("(5) Clear Filters")
+        print("(6) Logout")
         print("(q) Quit")
         userOption = input("Enter your choice: ")
         print("\n")
@@ -102,6 +103,10 @@ def main():
                 curr_orgs = filter_organizations(organizations)
             case '5':
                 curr_orgs = organizations
+            case '6':
+                if user is not None:
+                    user = None
+                    print("You have successfully logged out.")
             case 'q':
                 break
 
