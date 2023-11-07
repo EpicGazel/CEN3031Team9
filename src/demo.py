@@ -65,10 +65,20 @@ def select_organizations(orgs, user):
             else:
                 print("Invalid amount.")
 
+def new_user():
+    username = input("Enter a username: ")
+    email = input("Enter an email: ")
+    password = input("Enter a password (1234567890123456): ")
+    ccnumber = input("Enter a credit card number: ")
+    ccexpiration = input("Enter a credit card expiration date (08/01): ")
+    cvv = input("Enter a credit card CVV (123): ")
+    return u.create_user("../data/new_users.csv", username, email, password, ccnumber, ccexpiration, cvv)
+
+
 
 def main():
     organizations = u.read_organizations_from_csv("../data/organizations.csv")
-    users = u.read_users_from_csv("../data/users.csv")
+    users = u.read_users_from_csv("../data/users.csv", "../data/new_users.csv")
 
     print("========== Demo functionality of donation application ==========")
     userOption = 'c'
@@ -84,6 +94,7 @@ def main():
         print("(4) Filter Organizations by tag")
         print("(5) Clear Filters")
         print("(6) Logout")
+        print("(7) Create User")
         print("(q) Quit")
         userOption = input("Enter your choice: ")
         print("\n")
@@ -107,6 +118,10 @@ def main():
                 if user is not None:
                     user = None
                     print("You have successfully logged out.")
+            case '7':
+                users.append(new_user())
+                user = users[-1]
+                print("You have successfully created a new user and logged in.")
             case 'q':
                 break
 
