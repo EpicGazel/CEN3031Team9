@@ -1,7 +1,7 @@
 import utilities as u
 from organizations import Organization
 from user import User, CreditCard
-
+import csv
 
 def login(users):
     print("Enter your username and password:")
@@ -66,9 +66,10 @@ def select_organizations(orgs, user):
                 print("Invalid amount.")
 
 
+
 def main():
-    organizations = u.read_organizations_from_csv("../data/organizations.csv")
-    users = u.read_users_from_csv("../data/users.csv")
+    organizations = u.read_organizations_from_csv("C:/Users/paule/source/repos/EpicGazel/CEN3031Team9/organizations.csv")
+    users = u.read_users_from_csv("C:/Users/paule/source/repos/EpicGazel/CEN3031Team9/users.csv")
 
     print("========== Demo functionality of donation application ==========")
     userOption = 'c'
@@ -83,6 +84,7 @@ def main():
         print("(3) Select Organization to read more or donate (must be logged in to donate)")
         print("(4) Filter Organizations by tag")
         print("(5) Clear Filters")
+        print("(6) Register My Charity")
         print("(q) Quit")
         userOption = input("Enter your choice: ")
         print("\n")
@@ -102,6 +104,9 @@ def main():
                 curr_orgs = filter_organizations(organizations)
             case '5':
                 curr_orgs = organizations
+            case '6':
+                    new_org = Organization.enter_new_organization()
+                    new_org.display_info()
             case 'q':
                 break
 
