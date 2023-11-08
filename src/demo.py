@@ -67,8 +67,8 @@ def select_organizations(orgs, user):
 
 
 def main():
-    organizations = u.read_organizations_from_csv("/data/organizations.csv")
-    users = u.read_users_from_csv("/data/users.csv")
+    organizations = u.read_organizations_from_csv("./data/organizations.csv")
+    users = u.read_users_from_csv("./data/users.csv")
 
     print("========== Demo functionality of donation application ==========")
     userOption = 'c'
