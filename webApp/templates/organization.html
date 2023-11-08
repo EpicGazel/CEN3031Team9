@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ organization.name }}</title>
+</head>
+<body>
+    <h1>{{ organization.name }}</h1>
+    <p>{{ organization.description }}</p>
+    <p>Tags: {{ organization.tags | join(', ') }}</p>
+    <p><a href="{{ url_for('organizations_list') }}">Back to Organizations</a></p>
+</body>
+</html>
