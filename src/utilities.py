@@ -44,7 +44,7 @@ def read_users_from_csv(file_path, new_users_path = ""):
     users = []
 
     try:
-        with open(file_path, newline='', encoding='utf-8') as csvfile:
+        with open(file_path, newline='', encoding='unicode_escape') as csvfile:
             reader = csv.DictReader(csvfile)
 
             for row in reader:

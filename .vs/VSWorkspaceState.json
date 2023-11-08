@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.circleci",
+    "\\.idea",
+    "\\data",
+    "\\src",
+    "\\templates"
+  ],
+  "SelectedNode": "\\src\\app.py",
+  "PreviewInSolutionExplorer": false
+}

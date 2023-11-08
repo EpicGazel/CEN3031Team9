@@ -1,7 +1,7 @@
 import utilities as u
 from organizations import Organization
 from user import User, CreditCard
-
+import csv
 
 def login(users):
     print("Enter your username and password:")
@@ -95,6 +95,7 @@ def main():
         print("(5) Clear Filters")
         print("(6) Logout")
         print("(7) Create User")
+        print("(8) Register My Charity")
         print("(q) Quit")
         userOption = input("Enter your choice: ")
         print("\n")
@@ -122,6 +123,9 @@ def main():
                 users.append(new_user())
                 user = users[-1]
                 print("You have successfully created a new user and logged in.")
+            case '8':
+                    new_org = Organization.enter_new_organization()
+                    new_org.display_info()
             case 'q':
                 break
 
