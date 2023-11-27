@@ -21,7 +21,26 @@ def validate_user(username, password, users):
     return None
 
 
-def read_users_from_csv(file_path):
+def create_user(file_path, username, email, password, ccnumber, ccexpiration, cvv):
+    payment = CreditCard(ccnumber, ccexpiration, cvv)
+    user = User(username, email, password, payment)
+
+    #export to csv
+    with open(file_path, 'a', newline='') as csvfile:
+        fieldnames = ['Username', 'Email', 'Password', 'CCNumber', 'CCExpiration', 'CVV']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writerow({
+            'Username': user.username,
+            'Email': user.email,
+            'Password': user.password,
+            'CCNumber': user.payment_info.card_number,
+            'CCExpiration': user.payment_info.expiration_date,
+            'CVV': user.payment_info.cvv
+        })
+
+    return user
+
+def read_users_from_csv(file_path, new_users_path = ""):
     users = []
 
     try:
@@ -46,6 +65,27 @@ def read_users_from_csv(file_path):
         print(f"Error: The file {file_path} was not found.")
     except Exception as e:
         print(f"Error: {e}")
+
+    if new_users_path != "":
+        try:
+            with open(new_users_path, newline='', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+
+                for row in reader:
+                    # Create a User instance for each row in the CSV
+                    user = User(
+                        username=row['Username'],
+                        email=row['Email'],
+                        password=row['Password'],
+                        payment_info=CreditCard(
+                            card_number=row['CCNumber'],
+                            expiration_date=row['CCExpiration'],
+                            cvv=row['CVV']
+                        )
+                    )
+                    users.append(user)
+        except Exception as e:
+            print(f"Error adding newly created users: {e}")
 
     return users
 
