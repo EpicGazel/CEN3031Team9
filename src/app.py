@@ -6,7 +6,6 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = dotenv_values(".env")["FLASK_SECRET"]
-print("Flask secret is: ", app.secret_key)
 # Read data from CSV files
 organizations = read_organizations_from_csv('data/organizations.csv')
 users = read_users_from_csv('data/users.csv')
