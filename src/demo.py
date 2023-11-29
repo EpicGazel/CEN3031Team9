@@ -72,7 +72,7 @@ def new_user():
     ccnumber = input("Enter a credit card number: ")
     ccexpiration = input("Enter a credit card expiration date (08/01): ")
     cvv = input("Enter a credit card CVV (123): ")
-    return u.create_user("../data/new_users.csv", username, email, password, ccnumber, ccexpiration, cvv)
+    return u.create_user("./data/new_users.csv", username, email, password, ccnumber, ccexpiration, cvv)
 
 
 
