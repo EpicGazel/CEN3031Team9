@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from utilities import read_organizations_from_csv, read_users_from_csv, validate_user, filter_organizations
+from dotenv import load_dotenv, dotenv_values
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'secretkey'
+app.secret_key = dotenv_values(".env")["FLASK_SECRET"]
 # Read data from CSV files
 organizations = read_organizations_from_csv('data/organizations.csv')
 users = read_users_from_csv('data/users.csv')
