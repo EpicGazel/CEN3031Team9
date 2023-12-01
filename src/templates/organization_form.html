@@ -7,16 +7,12 @@
     <title>Organization/Charity Addition Form</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-
     <header>
             <h1>GiftGrub</h1>
     </header>
-
-
     <main class="support">
         <h1>Organization/Charity Addition Form</h1>
 
@@ -40,21 +36,17 @@
         </form>
     </main>
 
-
-
     <footer>
         <nav>
             <div class="container">
                 <ul>
-                    <li><a href="customer_support.html">Customer Support</a></li>
-                    <li><a href="organization_form.html">Organization Addition Form</a></li>
-                    <li><a href="login.html">User Login</a></li>
+                    <li><a href="{{ url_for('customer_support') }}">Customer Support</a></li>
+                    <li><a href="{{ url_for('login') }}">User Login</a></li>
 
                 </ul>
             </div>
         </nav>
     </footer>
-
 </body>
 
 </html>

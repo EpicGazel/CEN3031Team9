@@ -1,7 +1,7 @@
 import utilities as u
 from organizations import Organization
 from user import User, CreditCard
-import csv
+
 
 def login(users):
     print("Enter your username and password:")

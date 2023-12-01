@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ organization['Name'] }} Details</title>
+    <!-- Add any additional CSS links here -->
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 80%; margin: auto; }
+        .donation-form { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ organization['Name'] }}</h1>
+        
+        <h2>Full Charity Description</h2>
+        <p>{{ organization['Long Description'] | safe }}</p>
+
+        <h2>Tags</h2>
+        <p>{{ organization['Tags'] }}</p>
+
+        <h2>Website</h2>
+        <p><a href="{{ organization['Website Link'] }}" target="_blank">{{ organization['Website Link'] }}</a></p>
+
+        <div class="donation-form">
+            <h2>Make a Donation</h2>
+            <form action="{{ url_for('process_donation') }}" method="post">
+                <label for="donation-amount">Donation Amount:</label>
+                <input type="number" id="donation-amount" name="donation_amount" required>
+                <button type="submit">Donate</button>
+            </form>
+        </div>
+        <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+
+    </div>
+
+</body>
+</html>

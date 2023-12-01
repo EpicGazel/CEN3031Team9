@@ -4,8 +4,8 @@ import utilities as u
 
 
 def import_orgs():
-    # file_path = "../src/example_organizations.csv"
-    file_path = "../src/organizations.csv"
+    # file_path = "../data/example_organizations.csv"
+    file_path = "../data/organizations.csv"
 
     # Reading organizations from the CSV file
     organizations_list = u.read_organizations_from_csv(file_path)
@@ -13,8 +13,8 @@ def import_orgs():
 
 
 def import_users():
-    # file_path = "../src/example_users.csv"
-    file_path = "../src/users.csv"
+    # file_path = "../data/example_users.csv"
+    file_path = "../data/users.csv"
 
     # Reading users from the CSV file
     users_list = u.read_users_from_csv(file_path)
