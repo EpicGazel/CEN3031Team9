@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization/Charity Addition Form</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+            <h1>GiftGrub</h1>
+    </header>
+    <main class="support">
+        <h1>Organization/Charity Addition Form</h1>
+
+        <form id="orgForm" autocomplete="off" onsubmit="this.reset(); return false;">
+            <label for="orgName">Organization Name:</label>
+            <input type="text" id="orgName" required><br>
+
+            <label for="orgDescription">Description:</label><br>
+            <textarea id="orgDescription" rows="4" cols="70" required></textarea><br>
+
+            <label for="orgWebsite">Website (if available):</label>
+            <input type="url" id="orgWebsite"><br>
+
+            <label for="orgEmail">Contact Email:</label>
+            <input type="email" id="orgEmail" required><br>
+
+            <label for="orgPhone">Contact Phone Number:</label>
+            <input type="tel" id="orgPhone" required><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+
+    <footer>
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="{{ url_for('customer_support') }}">Customer Support</a></li>
+                    <li><a href="{{ url_for('login') }}">User Login</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </footer>
+</body>
+
+</html>
