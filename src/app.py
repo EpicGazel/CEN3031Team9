@@ -7,8 +7,8 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = dotenv_values(".env")["FLASK_SECRET"]
 # Read data from CSV files
-organizations = read_organizations_from_csv('src/data/organizations.csv')
-users = read_users_from_csv('src/data/users.csv')
+organizations = read_organizations_from_csv('./data/organizations.csv')
+users = read_users_from_csv('./data/users.csv')
 
 @app.route('/')
 def homepage():
