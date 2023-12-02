@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+
 from utilities import read_organizations_from_csv, read_users_from_csv, validate_user, create_user, filter_organizations, get_organization_data_by_name, get_organization_data_by_id
+
 from dotenv import load_dotenv, dotenv_values
 
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = dotenv_values(".env")["FLASK_SECRET"]
+
 # Read data from CSV files
 organizations = read_organizations_from_csv('src/data/organizations.csv')
 users = read_users_from_csv('src/data/users.csv')
@@ -23,6 +26,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+
         users = read_users_from_csv('src/data/users.csv')
         user = validate_user(username, password, users)
         if user:
@@ -36,6 +40,7 @@ def login():
 def user_page():
     if 'username' not in session:
         return redirect(url_for('login'))  # redirect to login
+
     return render_template('user.html', username=session['username'])
 
 @app.route('/user/search')
@@ -108,6 +113,7 @@ def process_donation():
 def thank_you():
     donation_amount = request.args.get('donation_amount')
     return render_template('thank_you.html', donation_amount=donation_amount)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

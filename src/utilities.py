@@ -26,6 +26,7 @@ def create_user(file_path, username, email, password, ccnumber, ccexpiration, cv
     user = User(username, email, password, payment)
 
     # export to CSV
+
     with open(file_path, 'a', newline='') as csvfile:
         fieldnames = ['Username', 'Email', 'Password', 'CCNumber', 'CCExpiration', 'CVV']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
