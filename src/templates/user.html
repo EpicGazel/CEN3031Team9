@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>User Dashboard</title>
+    <!-- Additional head content here (e.g., CSS links) -->
 </head>
 <body>
     <h1>Welcome, {{ username }}!</h1>
@@ -11,14 +12,21 @@
         <input type="text" id="tags" name="tags" required>
         <button type="submit">Search</button>
     </form>
-    <!-- List results if any -->
+    <!-- list results -->
     {% if organizations %}
         <ul>
             {% for org in organizations %}
-                <li>{{ org.name }} - Tags: {{ org.tags | join(', ') }}</li>
+                <li>
+                    <!-- make organization name a hyperlink -->
+                    <a href="{{ url_for('organization_details', org_name=org.name) }}">{{ org.name }}</a> - Tags: {{ org.tags | join(', ') }}
+                </li>
             {% endfor %}
         </ul>
+    {% else %}
+        <p>No organizations to list, to see all try the tag "all".</p>
     {% endif %}
     <p><a href="{{ url_for('logout') }}">Logout</a></p>
+    <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+
 </body>
 </html>

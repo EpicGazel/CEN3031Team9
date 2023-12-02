@@ -25,7 +25,8 @@ def create_user(file_path, username, email, password, ccnumber, ccexpiration, cv
     payment = CreditCard(ccnumber, ccexpiration, cvv)
     user = User(username, email, password, payment)
 
-    #export to csv
+    # export to CSV
+
     with open(file_path, 'a', newline='') as csvfile:
         fieldnames = ['Username', 'Email', 'Password', 'CCNumber', 'CCExpiration', 'CVV']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -115,17 +116,29 @@ def read_organizations_from_csv(file_path):
 
     return organizations
 
-
 def filter_organizations(orgs, tags):
     if 'all' in tags:
         return orgs
     return [org for org in orgs if all(tag.lower() in map(str.lower, org.tags) for tag in tags)]
 
-
 def list_tags(orgs):
     unique_tags = set(tag for org in orgs for tag in org.tags)
     return list(unique_tags)
 
+def get_organization_data_by_id(org_id):
+    for org in organizations:
+        if org['id'] == org_id:
+            return org
+    return None
+
+def get_organization_data_by_name(org_name):
+    # make sure the organizations.csv is in the right directory
+    with open('src/data/organizations.csv', mode='r', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['Name'].strip().lower() == org_name.strip().lower():
+                return row
+    return None
 
 if __name__ == "__main__":
     pass

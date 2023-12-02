@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-    <h1>Login</h1>
-    <form method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <input type="submit" value="Login">
-    </form>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>Login</title> 
+</head> 
+<body> 
+    <h1>Login</h1> 
+    <form method="post"> 
+        <label for="username">Username:</label> 
+        <input type="text" id="username" name="username" required> 
+        <label for="password">Password:</label> 
+        <input type="password" id="password" name="password" required> 
+        <input type="submit" value="Login"> 
+    </form> 
+    <p>Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a></p> 
     <p><a href="{{ url_for('homepage') }}">Back to Homepage</a></p>
-</body>
-</html>
+    <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+</body> 
+</html> 

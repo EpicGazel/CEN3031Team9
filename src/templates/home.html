@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to the Donation Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 <body>
     <h1>Welcome to the Donation Application!</h1>
     <p><a href="{{ url_for('organizations_list') }}">View Organizations</a></p>
-<p><a href="{{ url_for('login') }}">Login</a></p>
+    <p><a href="{{ url_for('login') }}">Login</a></p>
+    <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
 
-<form method="GET" action="{{ url_for('homepage') }}">
-    <label for="tags">Filter by Tags:</label>
-    <select name="tags" id="tags" multiple>
-  
-        {% for tag in all_tags %}
-        <option value="{{ tag }}">{{ tag }}</option>
-        {% endfor %}
-    </select>
-    <button type="submit">Filter</button>
-</form>
-
-
+    <form method="GET" action="{{ url_for('homepage') }}">
+        <label for="tags">Filter by Tags:</label>
+        <select name="tags" id="tags" multiple>
+            {% for tag in all_tags %}
+            <option value="{{ tag }}">{{ tag }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
 </body>
 </html>
-
