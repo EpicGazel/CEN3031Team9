@@ -77,8 +77,8 @@ def new_user():
 
 
 def main():
-    organizations = u.read_organizations_from_csv("../data/organizations.csv")
-    users = u.read_users_from_csv("../data/users.csv", "../data/new_users.csv")
+    organizations = u.read_organizations_from_csv("./data/organizations.csv")
+    users = u.read_users_from_csv("./data/users.csv", "./data/new_users.csv")
 
     print("========== Demo functionality of donation application ==========")
     userOption = 'c'
