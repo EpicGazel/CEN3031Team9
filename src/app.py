@@ -23,7 +23,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        users = read_users_from_csv('src/data/users.csv')
+        users = read_users_from_csv('./data/users.csv')
         user = validate_user(username, password, users)
         if user:
             session['username'] = user.username
@@ -79,7 +79,7 @@ def register():
         cvv = request.form['cvv']
 
         # create a new user
-        new_user = create_user('src/data/users.csv', username, email, password, ccnumber, ccexpiration, cvv)
+        new_user = create_user('./data/users.csv', username, email, password, ccnumber, ccexpiration, cvv)
 
         if new_user:
             # if successful redirect to login page
