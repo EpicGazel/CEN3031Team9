@@ -20,6 +20,8 @@ def organizations_list():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error_message = None
+    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -29,8 +31,8 @@ def login():
             session['username'] = user.username
             return redirect(url_for('user_page'))  # redirect to the user page
         else:
-            return "Invalid username or password", 401
-    return render_template('login.html')
+            error_message = "Invalid username or password. Please try again."
+    return render_template('login.html', error=error_message)
 
 @app.route('/user')
 def user_page():
@@ -69,6 +71,8 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    error_message = None
+
     if request.method == 'POST':
         # extract registration data
         username = request.form['username']
@@ -78,22 +82,17 @@ def register():
         ccexpiration = request.form['ccexpiration']
         cvv = request.form['cvv']
 
+        users = read_users_from_csv('./data/users.csv')
         
         # Check if username is already taken
         if is_username_taken(username, users):
-            return "Username already taken. Please try a different username.", 400
+            error_message = "Username already taken. Please try a different username."
         else:
             # create a new user
             new_user = create_user('./data/users.csv', username, email, password, ccnumber, ccexpiration, cvv)
-
-        if new_user:
-            # if successful redirect to login page
             return redirect(url_for('login'))
-        else:
-            # should have functionality for duplicate username
-            return "Registration failed. Please try again.", 400
 
-    return render_template('register.html')
+    return render_template('register.html', error=error_message)
 
 @app.route('/customer-support')
 def customer_support():

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ organization['Name'] }} Details</title>
-    <!-- Add any additional CSS links here -->
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .container { width: 80%; margin: auto; }
-        .donation-form { margin-top: 20px; }
-    </style>
 </head>
 <body>
+    <header>
+        <h1>GiftGrub</h1>
+    </header>
+    
     <div class="container">
         <h1>{{ organization['Name'] }}</h1>
         
@@ -31,9 +31,21 @@
                 <button type="submit">Donate</button>
             </form>
         </div>
-        <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
-
     </div>
 
+    <footer>
+        <nav>
+            <div class="container">
+                <ul>
+                    <p><a href="{{ url_for('homepage') }}">Home</a></p>
+                    <p><a href="{{ url_for('organizations_list') }}">View Organizations</a></p>
+                    <p><a href="{{ url_for('organization_form') }}">Organization Addition Form</a></p>
+                    <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+                    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+                </ul>
+            </div>
+        </nav>
+    </footer>
+    
 </body>
 </html>

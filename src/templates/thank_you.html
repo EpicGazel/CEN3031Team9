@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You for Your Donation</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.js"></script>
 </head>
-<body>
-    <h1>Thank You for Your Donation!</h1>
-    <p>We are incredibly grateful for your generous donation of ${{ donation_amount }}.</p>
+<body onload="launchConfetti()">
+    <script>
+        function launchConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 200,
+                origin: { y: 0.1 }
+            });
+        }
+        </script>
 
-    <section class="additional-links">
-        <ul>
-            <p><a href="{{ url_for('user_search') }}">Back to Search</a></p>
-            <p><a href="{{ url_for('homepage') }}">Back to Homepage</a></p>
-            <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
-            <p><a href="{{ url_for('logout') }}">Logout</a></p>
+    <header>
+        <h1>GiftGrub</h1>
+    </header>
 
-        </ul>
-    </section>
+    <main class="support">
+        <h1>Thank You for Your Donation!</h1>
+        <p>We are incredibly grateful for your generous donation of ${{ donation_amount }}.</p>
+        <p><a href="{{ url_for('user_page') }}">Return to search</a></p>
+    </main>
+
+
+    <footer>
+        <nav>
+            <div class="container">
+                <ul>
+                    <p><a href="{{ url_for('homepage') }}">Home</a></p>
+                    <p><a href="{{ url_for('organizations_list') }}">View Organizations</a></p>
+                    <p><a href="{{ url_for('organization_form') }}">Organization Addition Form</a></p>
+                    <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+                    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+                </ul>
+            </div>
+        </nav>
+    </footer>
+
 </body>
 </html>

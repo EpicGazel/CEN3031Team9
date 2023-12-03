@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta charset="UTF-8">
-    <title>Welcome to the Donation Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
 </head>
 <body>
-    <h1>Welcome to the Donation Application!</h1>
-    <p><a href="{{ url_for('organizations_list') }}">View Organizations</a></p>
-    <p><a href="{{ url_for('login') }}">Login</a></p>
-    <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+    <header>
+        <h1>GiftGrub</h1>
+    </header>
+
+    <main class="support">
+        <h1>Welcome to GiftGrub!</h1>
+        <p>Join our community! Click 'Login' to start giving.</p>
+        <a href="{{ url_for('login') }}" class="login-button">Login</a>
+    </main>
+
+    <footer>
+        <nav>
+            <div class="container">
+                <ul>
+                    <p><a href="{{ url_for('organizations_list') }}">View Organizations</a></p>
+                    <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+                </ul>            
+            </div>
+        </nav>
+    </footer>
 
 </body>
 </html>

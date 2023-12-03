@@ -2,11 +2,10 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organization/Charity Addition Form</title>
-
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -14,7 +13,7 @@
             <h1>GiftGrub</h1>
     </header>
     <main class="support">
-        <h1>Organization/Charity Addition Form</h1>
+        <h1>Organization Addition Form</h1>
 
         <form id="orgForm" autocomplete="off" onsubmit="this.reset(); return false;">
             <label for="orgName">Organization Name:</label>
@@ -24,7 +23,7 @@
             <textarea id="orgDescription" rows="4" cols="70" required></textarea><br>
 
             <label for="orgWebsite">Website (if available):</label>
-            <input type="url" id="orgWebsite"><br>
+            <input type="text" id="orgWebsite"><br>            
 
             <label for="orgEmail">Contact Email:</label>
             <input type="email" id="orgEmail" required><br>
@@ -40,13 +39,14 @@
         <nav>
             <div class="container">
                 <ul>
-                    <li><a href="{{ url_for('customer_support') }}">Customer Support</a></li>
-                    <li><a href="{{ url_for('login') }}">User Login</a></li>
-
+                    <p><a href="{{ url_for('homepage') }}">Home</a></p>
+                    <p><a href="{{ url_for('organizations_list') }}">View Organizations</a></p>
+                    <p><a href="{{ url_for('organization_form') }}">Organization Addition Form</a></p>
+                    <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+                    <p><a href="{{ url_for('logout') }}">Logout</a></p>
                 </ul>
             </div>
         </nav>
     </footer>
 </body>
-
 </html>
