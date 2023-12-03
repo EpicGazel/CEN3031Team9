@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <link rel="stylesheet" href="/static/css/style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>GiftGrub</h1> <!-- Your site name -->
+    </header>
+    <main>
+        <section class="thank-you">
+            <h2>Thank You for Reaching Out!</h2>
+            <p>We appreciate you contacting us. One of our customer service colleagues will get back to you shortly.</p>
+            <p>Have a great day!</p>
+        </section>
+        <section class="additional-links">
+            <ul>
+                <p><a href="{{ url_for('user_search') }}">Back to Search</a></p>
+                <p><a href="{{ url_for('homepage') }}">Back to Homepage</a></p>
+                <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+                <p><a href="{{ url_for('logout') }}">Logout</a></p>
+
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 GiftGrub. All rights reserved.</p>
+    </footer>
+</body>
+</html>

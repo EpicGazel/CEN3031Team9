@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Support</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 
 
 </head>
@@ -25,7 +25,7 @@
         <p>Email: <a href="mailto:support@gmail.com">giftgrubsupport@gmail.com</a></p>
 
         <h2>Contact Us</h2>
-        <form id="supportForm" autocomplete="off" onsubmit="this.reset(); return false;">
+        <form id="supportForm" method="post" action="{{ url_for('submit_support_form') }}">
             <label for="name">Name:</label>
             <input type="text" id="name" required><br>
 
@@ -49,8 +49,10 @@
         <nav>
             <div class="container">
                 <ul>
-                    <li><a href="{{ url_for('organization_form') }}">Organization Addition Form</a></li>
-                    <li><a href="{{ url_for('login') }}">User Login</a></li>
+                    <p><a href="{{ url_for('organization_form') }}">Organization Addition Form</a></p>
+                    <p><a href="{{ url_for('user_search') }}">Back to Search</a></p>
+                    <p><a href="{{ url_for('homepage') }}">Back to Homepage</a></p>
+                    <p><a href="{{ url_for('logout') }}">Logout</a></p>
             </ul>
             </div>
         </nav>

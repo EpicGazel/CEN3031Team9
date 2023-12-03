@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from utilities import read_organizations_from_csv, read_users_from_csv, validate_user, create_user, filter_organizations, get_organization_data_by_name, get_organization_data_by_id
+from utilities import read_organizations_from_csv, read_users_from_csv, validate_user, create_user, filter_organizations, get_organization_data_by_name, get_organization_data_by_id, is_username_taken
 from dotenv import load_dotenv, dotenv_values
 
 load_dotenv()
@@ -7,8 +7,8 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = dotenv_values(".env")["FLASK_SECRET"]
 # Read data from CSV files
-organizations = read_organizations_from_csv('src/data/organizations.csv')
-users = read_users_from_csv('src/data/users.csv')
+organizations = read_organizations_from_csv('./data/organizations.csv')
+users = read_users_from_csv('./data/users.csv')
 
 @app.route('/')
 def homepage():
@@ -23,7 +23,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        users = read_users_from_csv('src/data/users.csv')
+        users = read_users_from_csv('./data/users.csv')
         user = validate_user(username, password, users)
         if user:
             session['username'] = user.username
@@ -78,15 +78,20 @@ def register():
         ccexpiration = request.form['ccexpiration']
         cvv = request.form['cvv']
 
-        # create a new user
-        new_user = create_user('src/data/users.csv', username, email, password, ccnumber, ccexpiration, cvv)
+        
+        # Check if username is already taken
+        if is_username_taken(username, users):
+            return "Username already taken. Please try a different username.", 400
+        else:
+            # create a new user
+            new_user = create_user('./data/users.csv', username, email, password, ccnumber, ccexpiration, cvv)
 
         if new_user:
             # if successful redirect to login page
             return redirect(url_for('login'))
         else:
             # should have functionality for duplicate username
-            return "Registration failed. Please try a different username.", 400
+            return "Registration failed. Please try again.", 400
 
     return render_template('register.html')
 
@@ -108,6 +113,17 @@ def process_donation():
 def thank_you():
     donation_amount = request.args.get('donation_amount')
     return render_template('thank_you.html', donation_amount=donation_amount)
+
+@app.route('/submit-support', methods=['POST'])
+def submit_support_form():
+    # process from data here if desired
+    # e.g. send an email, save the data to .csv
+    return redirect(url_for('confirm_form_submission'))
+
+@app.route('/confirm-form-submission')
+def confirm_form_submission():
+    return render_template('confirm_form_submission.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

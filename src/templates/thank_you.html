@@ -7,5 +7,15 @@
 <body>
     <h1>Thank You for Your Donation!</h1>
     <p>We are incredibly grateful for your generous donation of ${{ donation_amount }}.</p>
+
+    <section class="additional-links">
+        <ul>
+            <p><a href="{{ url_for('user_search') }}">Back to Search</a></p>
+            <p><a href="{{ url_for('homepage') }}">Back to Homepage</a></p>
+            <p><a href="{{ url_for('customer_support') }}">Customer Support</a></p>
+            <p><a href="{{ url_for('logout') }}">Logout</a></p>
+
+        </ul>
+    </section>
 </body>
 </html>
