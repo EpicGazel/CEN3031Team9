@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from utilities import read_organizations_from_csv, read_users_from_csv, validate_user, create_user, filter_organizations, get_organization_data_by_name, get_organization_data_by_id
+from utilities import read_organizations_from_csv, read_users_from_csv, validate_user, create_user, filter_organizations, get_organization_data_by_name, get_organization_data_by_id, is_username_taken
 from dotenv import load_dotenv, dotenv_values
 
 load_dotenv()
@@ -20,6 +20,8 @@ def organizations_list():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error_message = None
+    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -29,8 +31,8 @@ def login():
             session['username'] = user.username
             return redirect(url_for('user_page'))  # redirect to the user page
         else:
-            return "Invalid username or password", 401
-    return render_template('login.html')
+            error_message = "Invalid username or password. Please try again."
+    return render_template('login.html', error=error_message)
 
 @app.route('/user')
 def user_page():
@@ -69,6 +71,8 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    error_message = None
+
     if request.method == 'POST':
         # extract registration data
         username = request.form['username']
@@ -78,17 +82,17 @@ def register():
         ccexpiration = request.form['ccexpiration']
         cvv = request.form['cvv']
 
-        # create a new user
-        new_user = create_user('./data/users.csv', username, email, password, ccnumber, ccexpiration, cvv)
-
-        if new_user:
-            # if successful redirect to login page
-            return redirect(url_for('login'))
+        users = read_users_from_csv('./data/users.csv')
+        
+        # Check if username is already taken
+        if is_username_taken(username, users):
+            error_message = "Username already taken. Please try a different username."
         else:
-            # should have functionality for duplicate username
-            return "Registration failed. Please try a different username.", 400
+            # create a new user
+            new_user = create_user('./data/users.csv', username, email, password, ccnumber, ccexpiration, cvv)
+            return redirect(url_for('login'))
 
-    return render_template('register.html')
+    return render_template('register.html', error=error_message)
 
 @app.route('/customer-support')
 def customer_support():
@@ -108,6 +112,17 @@ def process_donation():
 def thank_you():
     donation_amount = request.args.get('donation_amount')
     return render_template('thank_you.html', donation_amount=donation_amount)
+
+@app.route('/submit-support', methods=['POST'])
+def submit_support_form():
+    # process from data here if desired
+    # e.g. send an email, save the data to .csv
+    return redirect(url_for('confirm_form_submission'))
+
+@app.route('/confirm-form-submission')
+def confirm_form_submission():
+    return render_template('confirm_form_submission.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
