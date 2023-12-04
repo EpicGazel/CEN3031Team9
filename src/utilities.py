@@ -136,7 +136,7 @@ def get_organization_data_by_id(org_id):
 
 def get_organization_data_by_name(org_name):
     # make sure the organizations.csv is in the right directory
-    with open('src/data/organizations.csv', mode='r', encoding='utf-8') as csvfile:
+    with open('./data/organizations.csv', mode='r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             if row['Name'].strip().lower() == org_name.strip().lower():
