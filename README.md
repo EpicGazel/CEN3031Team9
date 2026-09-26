@@ -65,7 +65,7 @@ git clone https://github.com/EpicGazel/CEN3031Team9.git
 * **Paul Goodchild:** Scrum Master, Development Team Member
 * **Eldhose Salby:** Product Manager, Development Team Member
 * **Jorge Flores:** Development Team Member
-* **Zane Lewis:** Development Team Member
+* **EpicGazel:** Development Team Member
 
 We would like to express our sincere gratitude to all contributors for their dedication and hard work in bringing GiftGrub to life. 
 
